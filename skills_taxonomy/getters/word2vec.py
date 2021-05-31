@@ -1,13 +1,13 @@
 # File: getters/isco_esco_data
 """Load word2vec."""
 
-from cookiecutter_training_julia import get_yaml_config, Path
+from skills_taxonomy import get_yaml_config, Path, PROJECT_DIR
 import gensim
 from gensim.models import KeyedVectors
 
 # Load word2vec configs
 word2vec_config = get_yaml_config(
-    Path("cookiecutter_training_julia/config/pipeline/word2vec.yaml")
+    Path(str(PROJECT_DIR) + "/skills_taxonomy/config/pipeline/word2vec.yaml")
 )
 
 word2vec_path = word2vec_config["WORD2VEC_PATH"]
