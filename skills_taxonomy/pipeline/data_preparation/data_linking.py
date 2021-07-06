@@ -166,3 +166,51 @@ def get_data_links(occupation_df, skill_df):
     }
 
     return link_dict, missing_dict
+
+
+# Check skills for different occupation groups
+ID_top_level_dict = {
+    0: "Armed forces occupations",
+    1: "Managers",
+    2: "Professionals",
+    3: "Technicians and associate professionals",
+    4: "Clerical support workers",
+    5: "Service and sales workers",
+    6: "Skilled agricultural, forestry and fishery workers",
+    7: "Craft and related trades workers",
+    8: "Plant and machine operators and assemblers",
+    9: "Elementary occupations",
+}
+
+# Invert dict
+top_level_ID_dict = {v: k for k, v in ID_top_level_dict.items()}
+
+
+def get_skills_for_sector(sector, isco_set, isco_skill_dict):
+    """Get all skills for a given sector.
+
+    Parameters
+    ----------
+    isco_set (list):
+    list of ISCO IDs
+
+    isco_skill_dict (dict):
+    Dict that maps ISCO ID to skills required for occupations with that ID
+
+    sector (str/int):
+    Sector as string or sector ID as int
+    """
+
+    if isinstance(sector, str):
+        top_level = top_level_ID_dict[sector]
+    else:
+        top_level = sector
+
+    # Get group skills
+    group_skills = [
+        isco_skill_dict[str(isco)]
+        for isco in isco_set
+        if int(ISCO(isco).level_1) == top_level
+    ][0]
+
+    return group_skills
