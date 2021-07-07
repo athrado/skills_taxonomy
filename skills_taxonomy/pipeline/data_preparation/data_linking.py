@@ -158,7 +158,7 @@ def get_data_links(occupation_df, skill_df):
         "occup_to_ISCO": occ_isco_dict,
     }
 
-    # Set up dict for missing dicts
+    # Set up dict for missing lists
     missing_dict = {
         "occ_with_miss_essent_skills": missing_essent_skills_occ,
         "occ_with_miss_opt_skills": missing_opt_skills_occ,
