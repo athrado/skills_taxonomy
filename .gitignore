@@ -121,3 +121,6 @@ target/
 
 # NPM
 node_modules/
+
+# Recycling dir
+Recycling/
