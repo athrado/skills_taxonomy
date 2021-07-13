@@ -1,4 +1,4 @@
 # Word2vec configurations
 
-WORD2VEC_PATH: "inputs/data/word2vec/GoogleNews-vectors-negative300.bin"
+WORD2VEC_PATH: "/inputs/data/word2vec/GoogleNews-vectors-negative300.bin"
 EMBED_DIM: 300
