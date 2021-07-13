@@ -23,7 +23,7 @@ word2vec_config = get_yaml_config(
 word2vec_path = word2vec_config["WORD2VEC_PATH"]
 
 
-def load_word2vec() -> dict:
+def load_word2vec():
     """Load word2vec embeddings.
 
     Return:
