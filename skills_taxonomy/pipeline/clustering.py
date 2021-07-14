@@ -153,8 +153,8 @@ def k_means_clustering(features, n_clusters=15, random_state=42):
     kmeans = KMeans(
         n_clusters=n_clusters,
         random_state=random_state,
-        n_jobs=None,
-        precompute_distances="auto",
+        # n_jobs=None,
+        # precompute_distances="auto",
     )
     kmeans.fit(features)
     y_kmeans = kmeans.predict(features)
@@ -244,7 +244,7 @@ def get_updated_skill_df(skills_df, skills_of_interest, df_dict, kmeans):
 
 
 def visualise_tf_idf_for_skill(G_ISCO, tf_idf, ISCO_nodes, skills_of_interest, skill):
-    """Visualise TF-IDF
+    """Visualise TF-IDF on ISCO graph for given skill.
 
     Parameters
     ----------

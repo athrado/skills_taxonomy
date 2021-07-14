@@ -209,10 +209,10 @@ def map_ISCO_nodes_to_feat_indices(isco_set):
     ISCOs = [ISCO(isco) for isco in isco_set]
 
     # Get all ISCO levels (1 to 4 digits)
-    first_level = list(set([isco.level_1 for isco in ISCOs]))
-    second_level = list(set([isco.level_2 for isco in ISCOs]))
-    third_level = list(set([isco.level_3 for isco in ISCOs]))
-    fourth_level = list(set([isco.level_4 for isco in ISCOs]))
+    first_level = sorted(set([isco.level_1 for isco in ISCOs]))
+    second_level = sorted(set([isco.level_2 for isco in ISCOs]))
+    third_level = sorted(set([isco.level_3 for isco in ISCOs]))
+    fourth_level = sorted(set([isco.level_4 for isco in ISCOs]))
 
     # Get numer of ISCO level nodes
     n_ISCO_nodes = (
