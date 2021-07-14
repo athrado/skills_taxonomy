@@ -26,7 +26,9 @@ config = get_yaml_config(
 def get_occupations():
     """Load ISCO occupations.
 
-    Return:
+    Return
+    ----------
+        occupation_df (pandas.DateFrame):
         Occupation information as DataFrame.
     """
 
@@ -40,7 +42,9 @@ def get_occupations():
 def get_skills():
     """Load ESCO skills.
 
-    Return:
+    Return
+    ----------
+        skills_df (Pandas.DataFrame):
         Skills information as DataFrame.
     """
 
@@ -54,7 +58,9 @@ def get_skills():
 def get_occup_skill_dict():
     """Load dict that maps occupations to skills.
 
-    Return:
+    Return
+    ----------
+        occup_skill_dict (dict):
         Dict connecting occupations and skills.
     """
 

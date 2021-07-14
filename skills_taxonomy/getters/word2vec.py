@@ -26,8 +26,10 @@ word2vec_path = word2vec_config["WORD2VEC_PATH"]
 def load_word2vec():
     """Load word2vec embeddings.
 
-    Return:
-        Word2vec embeddings as dictionary."""
+    Return
+    ----------
+        word2vec (dict):
+        Word2vec embeddings with words as key and embeddings as values."""
 
     # Load embeddings
     word2vec = KeyedVectors.load_word2vec_format(word2vec_path, binary=True)
