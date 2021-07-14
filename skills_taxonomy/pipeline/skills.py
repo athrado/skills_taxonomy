@@ -1,16 +1,34 @@
+# File: getters/skills.py
+"""Get essential and optional skills for given occupation.
+
+Created April 2021
+@author: Julia Suter
+Last updated on 13/07/2021
+"""
+
+# ---------------------------------------------------------------------------------
+
+# Imports
 from skills_taxonomy.getters import isco_esco_data
 
+# ---------------------------------------------------------------------------------
+
+# Load dict that maps ESCO occupations to skills
 ESCO_occup_skills = isco_esco_data.get_occup_skill_dict()
 
 
 def get_essential_skills(occupation):
-    """Return essential skills for given occupation.
+    """Get essential skills for given occupation.
 
-    Args:
-        occupation (str) -- profession/occupation
+    Parameters
+    ----------
+        occupation: string
+        Occupation for which to get essential skills.
 
-    Return:
-        skills (list) -- essential skills for profession"""
+    Return
+    ---------
+        skills: list
+        Essential skills for given occupation."""
 
     # Get essential skills for occupation
     try:
@@ -28,13 +46,17 @@ def get_essential_skills(occupation):
 
 
 def get_optional_skills(occupation):
-    """Return optional skills for given occupation.
+    """Get optional skills for given occupation.
 
-    Args:
-        occupation (str) -- profession/occupation
+    Parameters
+    ----------
+        occupation: string
+        Occupation for which to get optional skills.
 
-    Return:
-        skills (list) -- optional skills for profession"""
+    Return
+    ---------
+        skills: list
+        Optional skills for given occupation."""
 
     # Get optional skills for occupation
     try:
@@ -49,13 +71,17 @@ def get_optional_skills(occupation):
 
 
 def get_all_skills(occupation):
-    """Return both optional and essential skills for given occupation.
+    """Get all skills (essential or optional) for given occupation.
 
-    Args:
-        occupation (str) -- profession/occupation
+    Parameters
+    ----------
+        occupation: string
+        Occupation for which to get all skills.
 
-    Return:
-        skills (list) -- all skills for profession"""
+    Return
+    ---------
+        skills: list
+        All skills for given occupation."""
 
     essential_skills = get_essential_skills(occupation)
     optional_skills = get_optional_skills(occupation)
@@ -64,13 +90,20 @@ def get_all_skills(occupation):
 
 
 def get_skills(occupation, skill_type):
-    """Return both optional and essential skills for given occupation.
+    """Get both optional and essential skills for given occupation.
 
-    Args:
-        occupation (str) -- profession/occupation
+    Parameters
+    ----------
+        occupation: string
+        Occupation for which to get all skills.
 
-    Return:
-        skills (list) -- all skills for profession"""
+        skill_type: 'all', 'essential', 'optional'
+        Skill type to retrieve.
+
+    Return
+    ---------
+        skills: list
+        Skills for given occupation."""
 
     if skill_type == "all":
         return get_all_skills(occupation)
@@ -87,6 +120,7 @@ def get_skills(occupation, skill_type):
 
 
 def main():
+    """Testing skill retrieval functions."""
 
     # Testing
     print("Essential skills for technical director:")
