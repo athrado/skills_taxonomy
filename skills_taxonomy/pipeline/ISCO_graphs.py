@@ -53,22 +53,22 @@ def create_circular_ISCO_graph(
 
     Parameters
     ----------
-        occupation set: list
+    occupation set: list
         List of occupations of interest.
 
-        link_dict: dict
+    link_dict: dict
         Dict that holds further dicts for connecting occupations, skills and ISCO skills.
 
-        reduced_occupation_set: bool, default=False
-        Only use the first 100 occupations of occupation_set
+    reduced_occupation_set: bool, default=False
+        Only use the first 100 occupations of occupation_set.
 
-        only_one_leaf_node: bool, default=False
+    only_one_leaf_node: bool, default=False
         Only display one leaf node (at outermost level) for better visibility.
 
 
     Return
     ----------
-        G_ISCO: networkx.Graph
+    G_ISCO: networkx.Graph
         Directed graph representing the ISCO hierarchy.
     """
 
@@ -122,17 +122,16 @@ def get_n_leaf_nodes(G, node):
 
     Parameter
     ----------
-        G: network.Graph
+    G: network.Graph
         Graph that is used to count leaf nodes.
 
-        node: network.Graph.node
-        Node of interest within graph G for which to count leaf nodes
+    node: network.Graph.node
+        Node of interest within graph G for which to count leaf nodes.
 
     Return
     ----------
-        n_leaf_nodes: int
-        Number of leaf nodes for given node in G.
-    """
+    n_leaf_nodes: int
+        Number of leaf nodes for given node in G."""
 
     # Get descendants for given node in G
     descendants = nx.descendants(G, node)
@@ -152,21 +151,21 @@ def get_tf(G, node, skill, leaf_skill_dict):
 
     Parameters
     ----------
-        G: network.Graph
+    G: network.Graph
         Graph for which to compute term frequency.
 
-        node: network.Graph.node
+    node: network.Graph.node
         Node of interest within graph G.
 
-        skill: str
+    skill: str
         Skill of interest for which to compute term frequency.
 
-        leaf_skill_dict: dict
+    leaf_skill_dict: dict
         Dictionary that maps leaf to skill set.
 
     Return
     ----------
-        tf: float
+    tf: float
         Term frequency for given skill and node."""
 
     # Get descendants for given node in G
@@ -191,18 +190,18 @@ def map_ISCO_nodes_to_feat_indices(isco_set):
 
     Parameters
     ----------
-        isco_set: list
+    isco_set: list
         List of ISCO IDs as strings.
 
     Return
     ----------
-        ISCO_idx_dict: dict
+    ISCO_idx_dict: dict
         Dictonary that maps ISCO node to feature index.
 
-        ISCO_nodes_dict: dict
+    ISCO_nodes_dict: dict
         Dictonary that gives feature indices for nodes up to given ISCO level.
 
-        ISCO_level_n_dict: dict
+    ISCO_level_n_dict: dict
         Dictionary that gives number of nodes up to given ISCO level."""
 
     # Get ISCO set
@@ -272,8 +271,36 @@ def compute_tf_idf(
     link_dict,
     pre_computed=True,
 ):
-    """
-    Compute the TF-IDF score for every node in the ISCO graph.
+    """Compute the TF-IDF score for every node in the ISCO graph.
+    More info on TF-IDF below parameter documentation.
+
+    Parameters
+    ----------
+    skills_of_interest: list
+        List of skills of interest as strings.
+
+    n_ISCO_nodes: int
+        Number of ISCO nodes (for setting up feature array).
+
+    G_ISCO: networkx.Graph
+        Circular ISCO graph for TF-IDF computation.
+
+    ISCO_idx_dict: dict
+        Mapping of ISCO to feature index to enable saving node features in ordered way.
+
+    link_dict: dict
+        Dictionary holding other dictionaries linking occupations, skills and ISCO IDs.
+
+    pre_computed: bool, default=True
+        If set to True, use load and return saved tf_idf and df_dict.
+
+    Return
+    ----------
+    tf_idf: np.array
+        Feature array holding TF-IDF scores for every node in ISCO graph.
+
+    df_dict: dict
+        Dictionary holding DF (document frequency) value for every ISCO node.
 
     Background Info on TF-IDF:
     We want to measure how specific or general a given skill is and
@@ -308,35 +335,7 @@ def compute_tf_idf(
     to give more weight to specific skills. If a skill is very general,
     it should not affect the ISCO node as much. Thus, the tf-idf in regards
     to the skill distribution over the ISCO graph measures how relevant a skill is
-    at a given ISCO node.
-
-    Parameters
-    ----------
-        skills_of_interest: list
-        List of skills of interest as strings.
-
-        n_ISCO_nodes: int
-        Number of ISCO nodes (for setting up feature array).
-
-        G_ISCO: networkx.Graph
-        Circular ISCO graph for TF-IDF computation.
-
-        ISCO_idx_dict: dict
-        Mapping of ISCO to feature index to enable saving node features in ordered way.
-
-        link_dict: dict
-        Dictionary holding other dictionaries linking occupations, skills and ISCO IDs.
-
-        pre_computed: bool, default=True
-        If set to True, use load and return saved tf_idf and df_dict.
-
-    Return
-    ----------
-        tf_idf: np.array
-        Feature array holding TF-IDF scores for every node in ISCO graph.
-
-        df_dict: dict
-        Dictionary holding DF (document frequency) value for every ISCO node."""
+    at a given ISCO node."""
 
     if pre_computed:
 
@@ -410,3 +409,43 @@ def compute_tf_idf(
         pickle.dump(df_dict, output_file)
 
     return tf_idf, df_dict
+
+
+def get_ISCO_node_colors(G, occ_isco_dict):
+    """Color-encode nodes with top level of ISCO.
+
+    Parameters:
+    -------------
+
+    G: networkx.Graph
+        Graph to color.
+
+    Return
+    -------------
+
+    node_colors: list
+        List with color encoding for nodes."""
+
+    # Set node colors
+    node_colors = []
+
+    for node in G.nodes:
+
+        # Get initial digit
+        group = node[0]
+
+        # If no digit
+        if group not in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+
+            # Handle root node
+            if node == "root":
+                group = "10"
+
+            # Handle occupation
+            else:
+                group = occ_isco_dict[node].str[0]
+
+        # Append to node color list
+        node_colors.append(int(group))
+
+    return node_colors

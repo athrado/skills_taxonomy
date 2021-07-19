@@ -29,18 +29,18 @@ def get_cosine_similarity(string_1, string_2, WORD2VEC):
 
     Parameters
     ----------
-        string_1: str
+    string_1: str
         First word/phrase to embed.
 
-        string_2: str
+    string_2: str
         Second word/phrase to embed.
 
-        WORD2VEC: dict
+    WORD2VEC: dict
         Dictionary with word2vec embeddings for words.
 
     Return
     ---------
-        cosim: float
+    cosim: float
         Cosine similarity between two embedded strings."""
 
     # Embed decriptions using word2vec embeddings
@@ -58,18 +58,18 @@ def get_branch_tuples(ranked_skill_triple, df_dict):
 
     Parameters
     ----------
-        ranked_skill_triple: tuple
+    ranked_skill_triple: tuple
         Ranked skill triples.
 
-        df_dict: dict
-        Document frequency dictionary
+    df_dict: dict
+        Document frequency dictionary.
 
     Return
     ---------
-        synonym_skills: tuple
-        Tuple of skills that are synonyms
+    synonym_skills: tuple
+        Tuple of skills that are synonyms.
 
-        skill_hierarchy: tuple
+    skill_hierarchy: tuple
         Hierarchically ordered triple of skills."""
 
     synonym_skills = []
@@ -143,21 +143,21 @@ def get_skill_tax_branches(
 
     Parameters
     ----------
-        clusters_of_interest: list
+    clusters_of_interest: list
         List of cluster labels as integers to inspect.
 
-        skills_df: pandas.DataFrame
+    skills_df: pandas.DataFrame
         Dataframe for skills with cluster and DF information.
 
-        desc_skill_dict: dict
+    desc_skill_dict: dict
         Dictionary mapping descriptions to skills.
 
-        WORD2VEC: dict, default=None
+    WORD2VEC: dict, default=None
         Dictionary that gives word2vec embeddings for words.
 
     Return
     ---------
-        cosim: float
+    cosim: float
         Cosine similarity between two embedded strings."""
 
     # Skill hierarchy tuples
@@ -238,24 +238,24 @@ def visualise_taxonomy_branches(
 
     Parameters
     ----------
-        skill_branches: tuple
+    skill_branches: tuple
         Ranked skill triples.
 
-        skill_to_cluster_dict: dict
-        Document frequency dictionary
+    skill_to_cluster_dict: dict
+        Document frequency dictionary.
 
-        directed_graph: bool, default=True
+    directed_graph: bool, default=True
         Plot a directed graph, ideal for hierachical triples.
 
-        every_nth_sample: int, default=5
+    every_nth_sample: int, default=5
         Only display every n-th sample.
 
     Return
     ---------
-        synonym_skills: tuple
-        Tuple of skills that are synonyms
+    synonym_skills: tuple
+        Tuple of skills that are synonyms.
 
-        skill_hierarchy: tuple
+    skill_hierarchy: tuple
         Hierarchically ordered triple of skills."""
 
     if directed_graph:

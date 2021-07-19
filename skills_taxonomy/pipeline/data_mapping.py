@@ -13,7 +13,6 @@ Last updated on 13/07/2021
 from collections import defaultdict
 from skills_taxonomy.pipeline import skills
 
-
 # ---------------------------------------------------------------------------------
 
 # Check skills for different occupation groups
@@ -42,9 +41,8 @@ class ISCO(object):
 
         Parameters
         ----------
-            isco: str, int
-            ISCO level number
-        """
+        isco: str, int
+            ISCO level number."""
 
         # ISCO as int or str
         self.int = int(isco)
@@ -65,12 +63,12 @@ class ISCO(object):
 
         Parameter
         ----------
-            other: ISCO instance
+        other: ISCO instance
             ISCO ID to comapre with.
 
         Return
         ----------
-            Similarity level: int"""
+        Similarity level: int"""
 
         # If identical
         if self.str == other.str:
@@ -104,20 +102,19 @@ def get_data_links(occupation_df, skill_df):
 
     Parameters
     ----------
-        occupation_df: pandas Dataframe
-        Dataframe for occupations
+    occupation_df: pandas Dataframe
+        Dataframe for occupations.
 
-        skill_df: pandas Dataframe
-        Dataframe for skills
+    skill_df: pandas Dataframe
+        Dataframe for skills.
 
     Return
     ----------
-        link_dict: dict
+    link_dict: dict
         Nested dictionary for linking occupations, skills and ISCO levels.
 
-        missing_dict: dict
-        Nested dictionary holding lists with missing skill and ISCO entities
-    """
+    missing_dict: dict
+        Nested dictionary holding lists with missing skill and ISCO entities."""
 
     # Initialize skill dicts
     skill_isco_dict = defaultdict(list)
@@ -206,20 +203,19 @@ def get_skills_for_sector(sector, isco_set, isco_skill_dict):
 
     Parameters
     ----------
-        isco_set: list
+    isco_set: list
         List of ISCO IDs.
 
-        isco_skill_dict: dict
+    isco_skill_dict: dict
         Dict that maps ISCO ID to skills required for occupations with that ID.
 
-        sector: str, int
+    sector: str, int
         Sector as string or sector ID as int.
 
     Return
     ----------
-        sector_skills: list
-        List of skills required in given sector.
-    """
+    sector_skills: list
+        List of skills required in given sector."""
 
     # Get top level sector name
     if isinstance(sector, str):

@@ -28,7 +28,7 @@ def load_word2vec():
 
     Return
     ----------
-        word2vec (dict):
+    word2vec (dict):
         Word2vec embeddings with words as key and embeddings as values."""
 
     # Load embeddings

@@ -28,9 +28,8 @@ def get_occupations():
 
     Return
     ----------
-        occupation_df (pandas.DateFrame):
-        Occupation information as DataFrame.
-    """
+    occupation_df (pandas.DateFrame):
+        Occupation information as DataFrame."""
 
     # Get path and load csv file
     occ_path = str(PROJECT_DIR) + config["OCCUPATIONS_PATH"]
@@ -44,9 +43,8 @@ def get_skills():
 
     Return
     ----------
-        skills_df (Pandas.DataFrame):
-        Skills information as DataFrame.
-    """
+    skills_df (Pandas.DataFrame):
+        Skills information as DataFrame."""
 
     # Get path and load csv file
     skills_path = str(PROJECT_DIR) + config["SKILLS_PATH"]
@@ -60,9 +58,8 @@ def get_occup_skill_dict():
 
     Return
     ----------
-        occup_skill_dict (dict):
-        Dict connecting occupations and skills.
-    """
+    occup_skill_dict (dict):
+        Dict connecting occupations and skills."""
 
     # Get path
     occ_skill_dict_path = str(PROJECT_DIR) + config["OCC_SKILL_DICT_PATH"]

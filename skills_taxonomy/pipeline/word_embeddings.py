@@ -8,6 +8,7 @@ Last updated on 13/07/2021
 
 # ---------------------------------------------------------------------------------
 
+# Imports
 import re
 import numpy as np
 
@@ -15,6 +16,8 @@ from gensim.models import KeyedVectors
 from textblob import TextBlob, Word
 
 from skills_taxonomy import get_yaml_config, Path, PROJECT_DIR
+
+# ---------------------------------------------------------------------------------
 
 # Load word2vec configs
 word2vec_config = get_yaml_config(
@@ -37,8 +40,17 @@ def load_word2vec() -> dict:
     return word2vec
 
 
-def embed_phrase(WORD2VEC, phrase, EMBED_DIM=EMBED_DIM):
-    """Word2vec embedding for phrase."""
+def embed_phrase(WORD2VEC, phrase, EMBED_DIM=300):
+    """Word2vec embedding for phrase.
+
+    WORD2VEC: dict
+        Dictioanry holding (300-dim) word2vec embeddings.
+
+    phrase: str
+        Word or phrase to embed.
+
+    EMBED_DIM: int
+        Embedding dimensions to create embeddings array."""
 
     # Correct phrase, get tokens and length of phrase
     phrase = re.sub("_", " ", phrase)

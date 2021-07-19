@@ -22,12 +22,12 @@ def get_essential_skills(occupation):
 
     Parameters
     ----------
-        occupation: string
+    occupation: string
         Occupation for which to get essential skills.
 
     Return
     ---------
-        skills: list
+    skills: list
         Essential skills for given occupation."""
 
     # Get essential skills for occupation
@@ -50,12 +50,12 @@ def get_optional_skills(occupation):
 
     Parameters
     ----------
-        occupation: string
+    occupation: string
         Occupation for which to get optional skills.
 
     Return
     ---------
-        skills: list
+    skills: list
         Optional skills for given occupation."""
 
     # Get optional skills for occupation
@@ -75,12 +75,12 @@ def get_all_skills(occupation):
 
     Parameters
     ----------
-        occupation: string
+    occupation: string
         Occupation for which to get all skills.
 
     Return
     ---------
-        skills: list
+    skills: list
         All skills for given occupation."""
 
     essential_skills = get_essential_skills(occupation)
@@ -94,15 +94,15 @@ def get_skills(occupation, skill_type):
 
     Parameters
     ----------
-        occupation: string
+    occupation: string
         Occupation for which to get all skills.
 
-        skill_type: 'all', 'essential', 'optional'
+    skill_type: 'all', 'essential', 'optional'
         Skill type to retrieve.
 
     Return
     ---------
-        skills: list
+    skills: list
         Skills for given occupation."""
 
     if skill_type == "all":

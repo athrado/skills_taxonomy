@@ -33,13 +33,15 @@ def plot_explained_variance(dim_reduction, title):
 
     Parameters
     ----------
-        dim_reduction: sklearn.decomposition.PCA, sklearn.decomposition.TruncatedSVD
+    dim_reduction: sklearn.decomposition.PCA, sklearn.decomposition.TruncatedSVD
         Dimensionality reduction on features with PCA or LSA.
 
-        title: str
+    title: str
         Title for saving plot.
 
-    Return: None"""
+    Return
+    ----------
+    None"""
 
     # Explained variance ratio (how much is covered by how many components)
 
@@ -71,24 +73,24 @@ def dimensionality_reduction(
 
     Parameters
     ----------
-        features: np.array
+    features: np.array
         Original features on which to perform dimensionality reduction.
 
-        dim_red_tequnique: 'LSA', 'PCA', default='LSA'
+    dim_red_tequnique: 'LSA', 'PCA', default='LSA'
         Dimensionality reduction technique.
 
-        lsa_n_comps: int, default=90
+    lsa_n_comps: int, default=90
         Number of LSA components to use.
 
-        pca_expl_var_ratio: float (between 0.0 and 1.0), default=0.90
+    pca_expl_var_ratio: float (between 0.0 and 1.0), default=0.90
         Automatically compute number of components that fulfill given explained variance ratio (e.g. 90%).
 
-        random_state: int, default=42
+    random_state: int, default=42
         Seed for reproducible results.
 
     Return
     ---------
-        lsa_transformed or pca_reduced_features: np.array
+    lsa_transformed or pca_reduced_features: np.array
         Dimensionality reduced features."""
 
     if dim_red_technique.lower() == "lsa":
@@ -135,18 +137,18 @@ def k_means_clustering(features, n_clusters=15, random_state=42):
 
     Parameters
     ----------
-        features: np.array
+    features: np.array
         Features for clustering.
 
-        n_clusters: int, default=15
+    n_clusters: int, default=15
         Number of clusters.
 
-        random_state: int, default=42
+    random_state: int, default=42
         Seed for reproducible results.
 
     Return
     ---------
-        kmeans: sklearn.cluster.KMeans
+    kmeans: sklearn.cluster.KMeans
         Result of k-means clustering on given features."""
 
     # K-means Clustering
@@ -175,24 +177,24 @@ def get_updated_skill_df(skills_df, skills_of_interest, df_dict, kmeans):
 
     Parameters
     ----------
-        skills_df: pandas.DataFrame
+    skills_df: pandas.DataFrame
         Original skill dataframe.
 
-        skills_of_interest: list
-        List of skills of interested (as strings)
+    skills_of_interest: list
+        List of skills of interested (as strings).
 
-        df_dict: dict
+    df_dict: dict
         Document frequency dict for every ISCO node.
 
-        kmeans: sklearn.cluster.KMeans
+    kmeans: sklearn.cluster.KMeans
         Results from k-means clustering.
 
     Return
     ---------
-        updated_skill_df: pandas.DataFrame
+    updated_skill_df: pandas.DataFrame
         Updated skill dataframe with new information.
 
-        skill_mapping_dicts: dict
+    skill_mapping_dicts: dict
         Dictionarys for mapping skills and descriptions to respetivec clusters and vice versa."""
 
     # Get document frequency for every skill
@@ -248,24 +250,24 @@ def visualise_tf_idf_for_skill(G_ISCO, tf_idf, ISCO_nodes, skills_of_interest, s
 
     Parameters
     ----------
-        G_ISCO: networkx.Graph
+    G_ISCO: networkx.Graph
         Graph representing ISCO hierarchy.
 
-        tf_idf: np.array
+    tf_idf: np.array
         TF-IDF scores as features.
 
-        ISCO_nodes: list
+    ISCO_nodes: list
         List of feature indices referring to ISCO nodes.
 
-        skills_of_interest: list
+    skills_of_interest: list
         List of skills (as strings).
 
-        skill: str
+    skill: str
         Skill for which to visualise TF-IDF scores.
 
     Return
     ---------
-        None"""
+    None"""
 
     # Get TF-IDF scores for skill of interest
     skill_idx = skills_of_interest.index(skill)
