@@ -9,11 +9,11 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.4
+#       jupytext_version: 1.11.2
 #   kernelspec:
-#     display_name: 'Python 3.8.8 64-bit (''skills_taxonomy'': conda)'
+#     display_name: skills_taxonomy_copy
 #     language: python
-#     name: python388jvsc74a57bd0385aca7cc7193fa7fe2051d6a4a197b1c6fa9bef8687e1d073398ce7bdd836d1
+#     name: skills_taxonomy_copy
 # ---
 
 # %% [markdown]
@@ -172,20 +172,19 @@ from sklearn import preprocessing
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
-from skills_taxonomy import get_yaml_config, Path
-
 import networkx as nx
 from networkx.drawing.nx_agraph import graphviz_layout
 
+from skills_taxonomy import get_yaml_config, Path
 
 import skills_taxonomy.getters as getters
-import skills_taxonomy.utils as utils
 from skills_taxonomy.utils import plotting
 
-from skills_taxonomy.pipeline import data_mapping, skills
 from skills_taxonomy.pipeline.data_mapping import ISCO
-from skills_taxonomy.pipeline import ISCO_graphs
 from skills_taxonomy.pipeline import (
+    data_mapping,
+    ISCO_graphs,
+    skills,
     clustering,
     build_taxonomy_branches,
     word_embeddings,
@@ -306,11 +305,6 @@ print()
 print("All skills for air traffic safety technician:")
 print(skills.get_all_skills("career guidance advisor"))
 print()
-
-# %%
-# Get skills
-print("Essential skills for technical director:")
-print(skills.get_all_skills("data scientist"))
 
 
 # %%
@@ -549,7 +543,7 @@ plt.axis("equal")
 
 # Get circular tree shape
 circular_pos = graphviz_layout(G_ISCO_full, prog="twopi", args="")
-node_labels = {label: label if len(label) <= 4 else "" for label in G_ISCO_full.nodes}
+node_labels = {label: label if len(label) <= 3 else "" for label in G_ISCO_full.nodes}
 
 # Draw graph
 nx.draw(
