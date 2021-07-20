@@ -85,5 +85,4 @@ $ python -m textblob.download_corpora
 # Setup ipygraphviz (or check here: https://pygraphviz.github.io/)
 brew install graphviz
 conda install -c conda-forge pygraphviz
-
 ```
