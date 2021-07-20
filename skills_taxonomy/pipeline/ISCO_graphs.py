@@ -10,6 +10,8 @@ Last updated on 13/07/2021
 
 # Imports
 import networkx as nx
+from networkx.drawing.nx_agraph import graphviz_layout
+
 import numpy as np
 import pickle
 
@@ -449,3 +451,84 @@ def get_ISCO_node_colors(G, occ_isco_dict):
         node_colors.append(int(group))
 
     return node_colors
+
+
+def visualise_tf_idf_for_skill(G_ISCO, tf_idf, ISCO_nodes, skills_of_interest, skill):
+    """Visualise TF-IDF on ISCO graph for given skill.
+
+    Parameters
+    ----------
+    G_ISCO: networkx.Graph
+        Graph representing ISCO hierarchy.
+
+    tf_idf: np.array
+        TF-IDF scores as features.
+
+    ISCO_nodes: list
+        List of feature indices referring to ISCO nodes.
+
+    skills_of_interest: list
+        List of skills (as strings).
+
+    skill: str
+        Skill for which to visualise TF-IDF scores.
+
+    Return
+    ---------
+    None"""
+
+    # Get TF-IDF scores for skill of interest
+    skill_idx = skills_of_interest.index(skill)
+    skill_tfidf = tf_idf[skill_idx, :]
+
+    # Set TF-IDF dict for ISCO nodes
+    node_idf_dict = dict(zip(ISCO_nodes, skill_tfidf))
+    node_idf_dict["root"] = 0.0
+
+    # Fill up with 0.0 for missing nodes
+    for node in G_ISCO.nodes:
+        if node not in node_idf_dict.keys():
+            node_idf_dict[node] = 0.0
+
+    # Set node weights based on TF-IDF
+    node_weights = [node_idf_dict[node] for node in G_ISCO.nodes]
+
+    # Normalise
+    min_node = min(node_weights)
+    max_node = max(node_weights)
+    node_weights = [((x - min_node) / (max_node - min_node)) for x in node_weights]
+
+    # Only display top level sector labels
+    label_dict = data_mapping.ID_top_level_dict
+    node_labels = {
+        label: label_dict[int(label)] if len(label) <= 1 else ""
+        for label in G_ISCO.nodes
+    }
+
+    # Make top level sector nodes slightly larger
+    node_size = [750 if len(label) <= 1 else 200 for label in G_ISCO.nodes]
+
+    # Set figure size and circular pos
+    plt.figure(figsize=(15, 15))
+    circular_pos = graphviz_layout(G_ISCO, prog="twopi", args="")
+
+    # Draw graph
+    nx.draw(
+        G_ISCO,
+        circular_pos,
+        node_size=node_size,
+        alpha=1,
+        edge_color="gray",
+        node_color=node_weights,
+        font_size=8,
+        cmap=cm.Reds,
+        with_labels=True,
+        labels=node_labels,
+        edgecolors="black",
+    )
+    plt.axis("equal")
+
+    # Save plot
+    plotting.save_fig(plt, "TF-IDF for skill {}".format(skill))
+
+    plt.show()

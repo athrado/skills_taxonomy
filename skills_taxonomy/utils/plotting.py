@@ -1,4 +1,4 @@
-# File: plotting.py
+## File: plotting.py
 """Plotting utils (so far only saving figures).
 
 Created April 2021
@@ -10,6 +10,7 @@ Last updated on 13/07/2021
 
 # Imports
 import os
+import re
 from skills_taxonomy import get_yaml_config, Path, PROJECT_DIR
 
 # ---------------------------------------------------------------------------------
@@ -43,6 +44,9 @@ def save_fig(plot, fig_name, tight_layout=False, fig_extension="png", resolution
     Return
     ----------
     None"""
+
+    # Adjust filename (remove white space)
+    fig_name = re.sub(" ", "_", fig_name)
 
     # Set the file path
     path = os.path.join(graph_output_path, fig_name + "." + fig_extension)
