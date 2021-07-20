@@ -12,11 +12,17 @@ Last updated on 13/07/2021
 import networkx as nx
 from networkx.drawing.nx_agraph import graphviz_layout
 
+import matplotlib.pyplot as plt
+from matplotlib import cm
+
 import numpy as np
 import pickle
 
-from skills_taxonomy.pipeline.data_mapping import ISCO
 from skills_taxonomy import get_yaml_config, Path, PROJECT_DIR
+
+from skills_taxonomy.pipeline import data_mapping
+from skills_taxonomy.pipeline.data_mapping import ISCO
+import skills_taxonomy.utils.plotting as plotting
 
 # ---------------------------------------------------------------------------------
 

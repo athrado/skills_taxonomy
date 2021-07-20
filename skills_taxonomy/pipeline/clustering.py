@@ -13,12 +13,10 @@ import numpy as np
 import pandas as pd
 
 import matplotlib.pyplot as plt
-from matplotlib import cm
 
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA, TruncatedSVD
 
-from skills_taxonomy.pipeline import data_mapping
 import skills_taxonomy.utils.plotting as plotting
 
 # ---------------------------------------------------------------------------------
