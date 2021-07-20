@@ -9,7 +9,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.4
+#       jupytext_version: 1.11.2
 #   kernelspec:
 #     display_name: skills_taxonomy_copy
 #     language: python
@@ -671,7 +671,7 @@ tf_idf, df_dict = ISCO_graphs.compute_tf_idf(
 
 # %%
 # Visualise tf-idf scores across ISCO graph
-clustering.visualise_tf_idf_for_skill(
+ISCO_graphs.visualise_tf_idf_for_skill(
     G_ISCO_full, tf_idf, ISCO_nodes_dict[4], skills_of_interest, "manage staff"
 )
 
