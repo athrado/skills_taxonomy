@@ -12,7 +12,7 @@ Finally, for each skill in a cluster, we compute the two most similar skills by 
 
 ### Structure
 
-The code is refactored into seperate modules. To see an application of the various functions, check out the notebook [Build Skills Taxonomy.py]("https://github.com/athrado/skills_taxonomy/blob/0_setup_cookiecutter/skills_taxonomy/analysis/Build Skills Taxonomy.py") in the dir `skills_taxonomy/analysis/`.
+The code is refactored into seperate modules. To see an application of the various functions, check out the notebook [Build_Skills_Taxonomy.ipynb](https://github.com/athrado/skills_taxonomy/blob/0_setup_cookiecutter/skills_taxonomy/analysis/Build_Skills_Taxonomy.py") in the dir `skills_taxonomy/analysis/`.
 
 The notebook shows a prototype for solving **building a skills taxonomy**. It describes the entire process for developing this approach, including data analysis and some processing steps that are not necessary for the final pipeline.
 
