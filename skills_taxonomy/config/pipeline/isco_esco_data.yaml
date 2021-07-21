@@ -1,0 +1,5 @@
+# ISCO, ESCO data paths
+
+OCCUPATIONS_PATH: "/inputs/data/occupations_en.csv"
+SKILLS_PATH: "/inputs/data/skills_en.csv"
+OCC_SKILL_DICT_PATH: "/inputs/data/ESCO_occup_skills.json"
